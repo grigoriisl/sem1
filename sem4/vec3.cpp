@@ -5,57 +5,67 @@ using namespace std;
 int main()
 {
     int N,M;
+    cout << "Введите N и M";
     cin >> N >> M;
-    int LsN[N][2];
-    int LsM[2][M];
-    int Ls[N][M];
-    for (int i = 0; i < N; i++){
-        for (int j = 0;j < M; j++ ){
-            cin >> Ls[i][j];
+    int vn[N][2];
+    int vm[2][M];
+    int v[N][M];
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0;j < M; j++ )
+        {
+            cin >> v[i][j];
         }
     }
 
     for (int i = 0; i < N; i++)
     {
-        int Max = -9999999;
-        int Min = 9999999999;
-        for (int j = 0;j < M; j++ ){
-            if (Ls[i][j] > Max){
-                Max = Ls[i][j];
+        int maxi = -9999999;
+        int mini = 999999;
+        for (int j = 0;j < M; j++ )
+        {
+            if (v[i][j] > maxi)
+            {
+                maxi = v[i][j];
             }
-            if (Ls[i][j] < Min){
-                Min = Ls[i][j];
+            if (v[i][j] < mini)
+            {
+                mini = v[i][j];
             }
-        LsN[i][0] = Max;
-        LsN[i][1] = Min;
+        vn[i][0] = maxi;
+        vn[i][1] = mini;
 
         }
     }
 
     for (int i = 0; i < M; i++)
     {
-        int Max = -9999999;
-        int Min = 9999999999;
-        for (int j = 0;j < N; j++ ){
-            if (Ls[j][i] > Max){
-                Max = Ls[j][i];
+        int maxi = -9999999;
+        int mini = 9999999;
+        for (int j = 0;j < N; j++ )
+        {
+            if (v[j][i] > maxi)
+            {
+                maxi = v[j][i];
             }
-            if (Ls[j][i] < Min){
-                Min = Ls[j][i];
+            if (v[j][i] < mini)
+            {
+                mini = v[j][i];
             }
-        LsM[0][i] = Max;
-        LsM[1][i] = Min;
-
+        vm[0][i] = maxi;
+        vm[1][i] = mini;
         }
     }
     for (int i = 0; i < N; i++)
     {
-        for (int j = 0;j < M; j++ ){
-            if ((Ls[i][j] == LsN[i][1]) && (Ls[i][j] == LsM[0][i]))
+        for (int j = 0;j < M; j++ )
+        {
+            if ((v[i][j] == vn[i][1]) and (v[i][j] == vm[0][i]))
             {
-                cout << "Тип данных А, индексы" << i << " " << j << ". Значение:" << Ls[i][j] << endl;
+                cout << "Тип данных А, индексы" << i << "-" << j << ":" << v[i][j] << endl;
             }
-            else{
+            else
+            {
                 cout << "None" << endl;
             }
         }
@@ -64,9 +74,9 @@ int main()
     {
         for (int j = 0;j < N; j++ )
         {
-            if ((Ls[i][j] == LsN[i][0]) && (Ls[i][j] == LsM[1][i]))
+            if ((v[i][j] == vn[i][0]) and (v[i][j] == vm[1][i]))
             {
-                cout << "Тип данных В, индексы - " << i << " и " << j << ". Значение:" << Ls[i][j] << endl;
+                cout << "Тип данных В, индексы - " << i << "-" << j << ":" << v[i][j] << endl;
             }
             else
             {

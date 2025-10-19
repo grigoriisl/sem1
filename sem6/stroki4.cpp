@@ -7,7 +7,6 @@
 #include <cstring>
 using namespace std;
 
-
 int main() { 
     int sch = 0;
     string str2 = "";
@@ -34,7 +33,8 @@ int main() {
         {
             sch = 0;
             continue;
-        } else 
+        } 
+        else 
         {
             cout << "Нет";
             flag = 1;

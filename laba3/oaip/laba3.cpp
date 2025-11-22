@@ -3,11 +3,9 @@
 #include <vector>
 #include <string>
 #include <algorithm>
-
 using namespace std;
 
-vector<string> readFile() 
-{
+vector<string> readFile() {
     vector<string> lines;
     ifstream file("products.txt");
     string line;
@@ -20,8 +18,7 @@ vector<string> readFile()
     return lines;
 }
 
-void writeFile(const vector<string>& lines) 
-{
+void writeFile(const vector<string>& lines) {
     ofstream file("products.txt");
     for (const string& line : lines) {
         file << line << endl;
@@ -56,14 +53,14 @@ void searchProduct() {
     bool found = false;
     for (const string& line : products) {
         size_t pos = line.find(',');
-        string name = line.substr(0, pos);
+        string name = line.substr(0, pos);   
         if (name == searchName) {
             cout << "Найден: " << line << endl;
             found = true;
             break;
         }
     }
-    if (found==0) {
+    if (!found) {
         cout << "Не найден\n";
     }
 }
@@ -105,14 +102,15 @@ void addProduct() {
     cout << "Продукт добавлен\n";
 }
 
-void showmaxprice() {
+void showByMaxPrice() {
     double maxPrice;
     cout << "Максимальная цена: ";
     cin >> maxPrice;
     cin.ignore();
     vector<string> products = readFile();
     bool found = false;
-    for (const string& line : products) {
+    for (const string& line : products) 
+    {
         size_t firstComma = line.find(',');
         size_t lastComma = line.rfind(',');
         double price = stod(line.substr(firstComma + 1, lastComma - firstComma - 1));
@@ -120,8 +118,8 @@ void showmaxprice() {
             cout << line << endl;
             found = true;
         }
-    }  
-    if (found==0) {
+    }
+    if (!found) {
         cout << "Нет продуктов\n";
     }
 }
@@ -138,8 +136,8 @@ void showAll() {
     }
 }
 
-// Главное меню
-int main() {
+int main() 
+{
     int choice;
     do {
         cout << "\nМеню:\n";
@@ -153,18 +151,18 @@ int main() {
         cout << "8. Выход\n";
         cout << "Выбор: ";
         cin >> choice;
+        cin.ignore();
         switch(choice) {
             case 1: createFile(); break;
             case 2: searchProduct(); break;
             case 3: sortByPrice(); break;
             case 4: sortByQuantity(); break;
             case 5: addProduct(); break;
-            case 6: showmaxprice(); break;
+            case 6: showByMaxPrice(); break;
             case 7: showAll(); break;
             case 8: cout << "Выход\n"; break;
             default: cout << "Неверный выбор\n";
         }
-        
     } while (choice != 8);
     return 0;
 }

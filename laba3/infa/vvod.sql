@@ -3,8 +3,9 @@ CREATE TABLE products (
     name VARCHAR(100), 
     price FLOAT,
     quantity INT, 
-    category_id INT
-);
+    category_id INT,
+	FOREIGN KEY (category_id) REFERENCES categories(id)
+); 
 
 CREATE TABLE categories (
 	id INT PRIMARY KEY,
@@ -15,9 +16,11 @@ CREATE TABLE sales (
 	id INT PRIMARY KEY,
 	product_id INT,
 	sale_date DATE,
-	quantity_sold INT
+	quantity_sold INT,
+	FOREIGN KEY (product_id) REFERENCES products(id)
 );
 
+ы
 INSERT INTO categories (id, category_name) VALUES
 (1, 'Овощи'),
 (2, 'Фрукты'),
@@ -53,3 +56,5 @@ INSERT INTO sales (id, product_id, sale_date, quantity_sold) VALUES
 (3, '6', '2024-01-16', 2),
 (4, '9', '2024-01-16', 1),
 (5, '14', '2024-01-17', 1);
+
+--FOREIGN KEY СДЕЛАТЬ 3 НОМЕР

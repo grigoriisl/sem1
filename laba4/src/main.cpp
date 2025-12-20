@@ -5,17 +5,6 @@
 #include <pqxx/pqxx>
 using namespace std;
 
-template<typename T1, typename T2>
-class Pair {
-private:
-    T1 first;
-    T2 second;
-public:
-    Pair(const T1& f, const T2& s) : first(f), second(s) {}
-    T1 getFirst() const { return first; }
-    T2 getSecond() const { return second; }
-};
-
 class DatabaseHandler {
 protected:
     shared_ptr<pqxx::connection> conn;

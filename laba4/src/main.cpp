@@ -5,6 +5,17 @@
 #include <pqxx/pqxx>
 using namespace std;
 
+template<typename T1, typename T2>
+class Pair {
+private:
+    T1 first;
+    T2 second;
+public:
+    Pair(const T1& f, const T2& s) : first(f), second(s) {}
+    T1 getFirst() const { return first; }
+    T2 getSecond() const { return second; }
+};
+
 class DatabaseHandler {
 protected:
     shared_ptr<pqxx::connection> conn;
@@ -24,12 +35,6 @@ public:
             }
         } catch (const exception &e) {
             cerr << "connection error: " << e.what() << endl;
-        }
-    }
-    
-    ~DatabaseHandler() {
-        if (logFile.is_open()) {
-            logFile.close();
         }
     }
     
@@ -204,7 +209,7 @@ public:
                       << ", product: " << row["name"].c_str()
                       << ", date: " << row["sale_date"].as<string>()
                       << ", quantity: " << row["quantity_sold"].as<int>()
-                      << ", total: $" << row["total_amount"].as<double>() << endl;
+                      << ", total:s " << row["total_amount"].as<double>() << endl;
             }
             log("viewed all sales");
         } catch (const exception& e) {
